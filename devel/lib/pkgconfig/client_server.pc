@@ -1,0 +1,8 @@
+prefix=/home/sergei/ROS_projects/laba_one_ws/devel
+
+Name: client_server
+Description: Description of client_server
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
