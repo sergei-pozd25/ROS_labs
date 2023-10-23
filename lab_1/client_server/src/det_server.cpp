@@ -8,7 +8,7 @@ bool determinant(det_service_lab::DeterminantCounterServ::Request &req,
     det_service_lab::DeterminantCounterServ::Response &res)
 {
     res.det = req.a11*(req.a22*req.a33-req.a23*req.a32)-req.a12*(req.a21*req.a33-req.a23*req.a31)+
-            req.a31*(req.a21*req.a32-req.a22*req.a31);
+            req.a13*(req.a21*req.a32-req.a22*req.a31);
 
     ROS_INFO_STREAM("request: " << req.a11 << req.a12 << req.a13 << req.a21 << req.a22 <<
              req.a23 << req.a31 << req.a32 << req.a33);
