@@ -25,9 +25,9 @@ int main()
     {
         for (int col = 0; col < image_1.cols; col++)
         {
-            blended_image.at<cv::Vec3b>(row, col)[0] = alpha*image_1.at<cv::Vec3b>(row, col)[0] + (1 - alpha)*(image_2.at<cv::Vec3b>(row, col)[0]);
-            blended_image.at<cv::Vec3b>(row, col)[1] = alpha*image_1.at<cv::Vec3b>(row, col)[1] + (1 - alpha)*(image_2.at<cv::Vec3b>(row, col)[1]);
-            blended_image.at<cv::Vec3b>(row, col)[2] = alpha*image_1.at<cv::Vec3b>(row, col)[2] + (1 - alpha)*(image_2.at<cv::Vec3b>(row, col)[2]);
+            blended_image.at<cv::Vec3b>(row, col)[0] = alpha*image_1.at<cv::Vec3b>(row, col)[0] + (1 - alpha)*(image_2.at<cv::Vec3b>(row, col)[0]);  // B
+            blended_image.at<cv::Vec3b>(row, col)[1] = alpha*image_1.at<cv::Vec3b>(row, col)[1] + (1 - alpha)*(image_2.at<cv::Vec3b>(row, col)[1]);  // G
+            blended_image.at<cv::Vec3b>(row, col)[2] = alpha*image_1.at<cv::Vec3b>(row, col)[2] + (1 - alpha)*(image_2.at<cv::Vec3b>(row, col)[2]);  // R
         }
     }
     cv::imwrite("/home/sergei/QT_projects/STZ/laba_1_stz_dop/blended_image.png", blended_image);
