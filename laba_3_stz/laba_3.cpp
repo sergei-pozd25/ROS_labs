@@ -81,7 +81,7 @@ void find_robot(cv::Mat image) {
     cv::Mat hsvimage;
     cv::cvtColor(image, hsvimage, cv::COLOR_BGR2HSV);
 
-    cv::Scalar red_begin_left = cv::Scalar(165, 50, 50);
+    cv::Scalar red_begin_left = cv::Scalar(155, 100, 100);
     cv::Scalar red_end_left = cv::Scalar(179, 255, 255);
 
     cv::Scalar green_begin = cv::Scalar(70, 80, 125);
@@ -100,20 +100,19 @@ void find_robot(cv::Mat image) {
     cv::findContours(blue_mask, contours_blue, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
     cv::findContours(red_mask_left, contours_red, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
 
-    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(20, 20));
-    cv::Mat kernel1 = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(25, 25));
+    cv::Mat core = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(20, 20));
 
     cv::Mat /*red_mask_right_dilated,*/ red_mask_left_dilated, red_mask_left_eroded; //, red_mask_right_eroded;
-    cv::morphologyEx(red_mask_left, red_mask_left_dilated, cv::MORPH_DILATE, kernel);
-    cv::morphologyEx(red_mask_left_dilated, red_mask_left_eroded, cv::MORPH_ERODE, kernel);
+    cv::morphologyEx(red_mask_left, red_mask_left_dilated, cv::MORPH_DILATE, core);
+    cv::morphologyEx(red_mask_left_dilated, red_mask_left_eroded, cv::MORPH_ERODE, core);
 
     cv::Mat green_mask_dilated, green_mask_eroded;
-    cv::morphologyEx(green_mask, green_mask_dilated, cv::MORPH_DILATE, kernel);
-    cv::morphologyEx(green_mask_dilated, green_mask_eroded, cv::MORPH_ERODE, kernel1);
+    cv::morphologyEx(green_mask, green_mask_dilated, cv::MORPH_DILATE, core);
+    cv::morphologyEx(green_mask_dilated, green_mask_eroded, cv::MORPH_ERODE, core);
 
     cv::Mat blue_mask_dilated, blue_mask_eroded;
-    cv::morphologyEx(blue_mask, blue_mask_dilated, cv::MORPH_DILATE, kernel);
-    cv::morphologyEx(blue_mask_dilated, blue_mask_eroded, cv::MORPH_ERODE, kernel);
+    cv::morphologyEx(blue_mask, blue_mask_dilated, cv::MORPH_DILATE, core);
+    cv::morphologyEx(blue_mask_dilated, blue_mask_eroded, cv::MORPH_ERODE, core);
 
     std::vector<std::vector<cv::Point>> contours_red_left_morph /*, contours_red_right_morph*/, contours_green_morph, contours_blue_morph;
     cv::findContours(green_mask_eroded, contours_green_morph, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
